@@ -25,7 +25,7 @@ CREATE TABLE Species (
     Conservation_Status VARCHAR2(50)
 );
 
-![Species Table]([https://raw.githubusercontent.com/Habimana06/COVID-19-Global-Data-Tracker-Project/main/cases_deaths.png](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20171015.png)) 
+![Species Table](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20171015.png?raw=true)
 
 CREATE TABLE Habitat (
     Habitat_ID NUMBER PRIMARY KEY,
