@@ -12,8 +12,8 @@ Features:
 - Audit logging & security
 - Incident analytics
 
-Schema Diagram: See 'schema-diagram.png' in repository
-![Schema Diagram](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/Untitled%20Diagram.drawio%20(1)?raw=true)
+Schema Diagram:
+![Schema Diagram](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/Untitled%20Diagram.drawio%20(1).png?raw=true)
 
 */
 -- =======================
