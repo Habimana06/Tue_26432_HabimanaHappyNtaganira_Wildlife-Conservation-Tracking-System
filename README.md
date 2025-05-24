@@ -142,15 +142,6 @@ INSERT INTO Researcher VALUES (11, 'Dr. Jeanette Umwali', 'Rwanda Wildlife Insti
 
 -- Public_Holidays
 INSERT INTO Public_Holidays VALUES (11, 'Kwibohora (Liberation Day)', TO_DATE('2025-07-04', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (12, 'Umuganura (Harvest Day)', TO_DATE('2025-08-02', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (13, 'Genocide Memorial Day', TO_DATE('2025-04-07', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (14, 'Labour Day', TO_DATE('2025-05-01', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (15, 'Christmas Day', TO_DATE('2025-12-25', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (16, 'New Year''s Day', TO_DATE('2025-01-01', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (17, 'Heroes Day', TO_DATE('2025-02-01', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (18, 'Independence Day', TO_DATE('2025-07-01', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (19, 'Eid al-Fitr', TO_DATE('2025-03-31', 'YYYY-MM-DD'));
-INSERT INTO Public_Holidays VALUES (20, 'Eid al-Adha', TO_DATE('2025-06-06', 'YYYY-MM-DD'));
 
 ![Public_Holidays Insert](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20172454.png?raw=true)
 
@@ -164,6 +155,8 @@ CREATE OR REPLACE PACKAGE Animal_Incident_Pkg AS
 END Animal_Incident_Pkg;
 /
 
+
+
 CREATE OR REPLACE PACKAGE BODY Animal_Incident_Pkg AS
 
   PROCEDURE GetAnimalIncidents(p_animal_id IN NUMBER) IS
@@ -174,6 +167,11 @@ CREATE OR REPLACE PACKAGE BODY Animal_Incident_Pkg AS
       ORDER BY date_reported DESC;
 
     rec incident_cursor%ROWTYPE;
+
+
+
+
+    
   BEGIN
     DBMS_OUTPUT.PUT_LINE('--- Incidents for Animal ID: ' || p_animal_id || ' ---');
     OPEN incident_cursor;
@@ -189,6 +187,10 @@ CREATE OR REPLACE PACKAGE BODY Animal_Incident_Pkg AS
     WHEN OTHERS THEN
       DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
   END;
+
+  
+
+
 
   FUNCTION CountIncidents(p_animal_id IN NUMBER)
   RETURN NUMBER IS
@@ -206,6 +208,8 @@ CREATE OR REPLACE PACKAGE BODY Animal_Incident_Pkg AS
 END Animal_Incident_Pkg;
 /
 
+
+
 -- =======================
 -- Analytics (Window Func)
 -- =======================
@@ -219,9 +223,9 @@ SELECT
   RANK() OVER (PARTITION BY animal_id ORDER BY date_reported DESC) AS incident_rank
 FROM Incident;
 
-![Animal_Incident_Rank_View](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20175528.png?raw=true)
+![Animal_Incident_Rank_View](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20185528.png?raw=true)
 
-![Animal_Incident_Rank_View](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20175627.png?raw=true)
+![Animal_Incident_Rank_View](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20185627.png?raw=true)
 
 -- ====================
 -- Testing the Package
@@ -251,9 +255,9 @@ WHERE incident_rank = 1;
 -- Sample Data
 -- =================
 
-![DATA IN TABLE](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20174040.png?raw=true)
+![DATA IN TABLE](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20184040.png?raw=true)
 
-![DATA IN TABLE](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20174100.png?raw=true)
+![DATA IN TABLE](https://github.com/Habimana06/Tue_26432_HabimanaHappyNtaganira_Wildlife-Conservation-Tracking-System/blob/main/screenshot/Screenshot%202025-04-21%20184100.png?raw=true)
 
 
 
@@ -284,6 +288,10 @@ BEGIN
     END IF;
 END restrict_weekday_and_holiday;
 /
+
+
+
+
 
 -- Compound Trigger for Multiple Row Handling (for Animal table)
 CREATE OR REPLACE TRIGGER restrict_multiple_operations
@@ -340,6 +348,8 @@ BEGIN
 END audit_log_trigger;
 /
 
+
+
 -- Function to Automate Auditing
 CREATE OR REPLACE FUNCTION log_audit (
     p_user_name VARCHAR2,
@@ -374,6 +384,8 @@ BEGIN
     log_audit(USER, 'INSERT/UPDATE/DELETE', 'Ranger', v_status);
 END audit_log_ranger;
 /
+
+
 
 
 
